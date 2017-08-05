@@ -24,7 +24,6 @@ class AuthorsController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama']);
-
             return view('authors.index')->with(compact('html'));
         }
 
@@ -36,6 +35,7 @@ class AuthorsController extends Controller
     public function create()
     {
         //
+        return view('authors.create');
     }
 
     /**
@@ -47,6 +47,10 @@ class AuthorsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,['name'=>'required|unique:authors']);
+        $author = Author::create($request->only('name'));
+        Session::flash("flash_notification",["level"=>"success","message"=>"Berhasil menyimpan $author->name"]);
+        return redirect()->route('authors.index');
     }
 
     /**

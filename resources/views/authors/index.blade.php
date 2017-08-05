@@ -14,15 +14,14 @@
 				</div>
 
 				<div class="panel-body" >
+				<p><a class="btn btn-primary" href="{{ route('authors.create') }}">Tambah</a></p>
 					{!! $html->table(['class'=>'table-striped']) !!}
 				</div>
-
-				@endsection
-
-				@section('scripts')
-				{!! $html->scripts() !!}
-				@endsection
 			</div>
 		</div>
 	</div>
 </div>
+@endsection
+@section('scripts')
+{!! $html->scripts() !!}
+@endsection
